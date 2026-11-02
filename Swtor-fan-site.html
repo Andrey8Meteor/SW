@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Старая Республика: неофициальный сайт фанатов SWTOR</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@600;800&family=Spectral:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#efe8d6;--ink:#14233a;--mute:#4d5b70;--accent:#1f5c99;--panel:#e3dac2;--line:#c4b795;--on-accent:#fff;
+  --head:"Big Shoulders Display","Arial Narrow",Impact,sans-serif;
+  --body:"Spectral",Georgia,"Times New Roman",serif;
+  box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);
+  color-scheme:light;
+}
+:root[data-side="empire"]{--bg:#140a0b;--ink:#e9deda;--mute:#b3a29e;--accent:#d23a44;--panel:#211214;--line:#3b2326;--on-accent:#fff;color-scheme:dark}
+@media (prefers-color-scheme:dark){
+  :root:not([data-side="republic"]){--bg:#140a0b;--ink:#e9deda;--mute:#b3a29e;--accent:#d23a44;--panel:#211214;--line:#3b2326;color-scheme:dark}
+}
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-padding-top:env(safe-area-inset-top,0px);scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 1.1rem/1.65 var(--body);transition:background .5s,color .5s}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:var(--bg);z-index:10}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
+.wrap{max-width:68rem;margin:0 auto;padding:0 1.25rem}
+header.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:9;background:var(--bg);border-bottom:1px solid var(--line)}
+header.top .wrap{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding-top:.7rem;padding-bottom:.7rem}
+.brand{font:800 1.35rem/1 var(--head);letter-spacing:.04em;text-decoration:none}
+nav{display:flex;gap:1.2rem;font-size:.98rem}
+nav a{text-decoration:none;color:var(--mute)}
+nav a:hover{color:var(--accent)}
+.side{display:inline-flex;border:2px solid var(--accent);border-radius:999px;overflow:hidden}
+.side button{font:600 .95rem var(--body);background:none;color:var(--ink);border:0;padding:.35rem .9rem;cursor:pointer}
+.side button[aria-pressed="true"]{background:var(--accent);color:var(--on-accent)}
+.hero{padding:clamp(3rem,10vw,7rem) 0 clamp(2.5rem,7vw,5rem);border-bottom:1px solid var(--line)}
+.hero h1{font:800 clamp(3.4rem,13vw,9rem)/.88 var(--head);margin:0 0 1.5rem;letter-spacing:-.01em}
+.hero h1 span{display:block;color:var(--accent);transition:color .5s}
+.hero p{max-width:36rem;font-size:1.25rem;color:var(--mute);margin:0 0 1.8rem}
+.btn{display:inline-block;background:var(--accent);color:var(--on-accent);padding:.7rem 1.4rem;border-radius:3px;text-decoration:none;font-weight:600}
+.btn.ghost{background:none;color:var(--ink);border:2px solid var(--line);margin-left:.6rem}
+section{padding:clamp(2.5rem,7vw,4.5rem) 0;border-bottom:1px solid var(--line)}
+h2{font:800 clamp(2rem,5vw,3.2rem)/1 var(--head);margin:0 0 .6rem}
+.lead{color:var(--mute);max-width:38rem;margin:0 0 2rem}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:1.2rem}
+.card{background:var(--panel);border-left:5px solid var(--accent);padding:1.3rem 1.4rem}
+.card h3{font:700 1.5rem/1.1 var(--head);margin:0 0 .5rem}
+.card p{margin:0;color:var(--mute)}
+.explorer{display:grid;grid-template-columns:15rem 1fr;gap:1.5rem}
+.tabs{display:flex;flex-direction:column;gap:.4rem}
+.tabs button{text-align:left;font:600 1.05rem var(--body);background:var(--panel);color:var(--ink);border:1px solid var(--line);padding:.7rem 1rem;cursor:pointer}
+.tabs button[aria-selected="true"]{background:var(--accent);color:var(--on-accent);border-color:var(--accent)}
+.detail{background:var(--panel);padding:1.6rem;min-height:15rem}
+.detail h3{font:800 2.2rem/1 var(--head);margin:0 0 .6rem}
+.detail ul{padding-left:1.2rem;color:var(--mute)}
+.chips{display:flex;gap:.6rem;flex-wrap:wrap;margin:1rem 0}
+.chips span{border:2px solid var(--accent);padding:.2rem .8rem;border-radius:999px;font-weight:600}
+.planets{display:grid;grid-template-columns:repeat(auto-fill,minmax(15rem,1fr));gap:1rem}
+.timeline{list-style:none;margin:0;padding:0;border-left:3px solid var(--accent)}
+.timeline li{padding:0 0 1.4rem 1.4rem;position:relative}
+.timeline li::before{content:"";position:absolute;left:-9px;top:.55rem;width:15px;height:15px;background:var(--accent);border-radius:50%}
+.timeline b{font:700 1.4rem var(--head);display:block}
+.timeline span{color:var(--mute)}
+footer{padding:2rem 0 3rem;color:var(--mute);font-size:.92rem}
+.tbl{overflow-x:auto}
+@media (max-width:720px){
+  nav{display:none}
+  .grid2,.explorer{grid-template-columns:1fr}
+  .tabs{flex-direction:row;flex-wrap:wrap}
+  .btn.ghost{margin:.6rem 0 0}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="#top">Старая Республика</a>
+    <nav aria-label="Разделы">
+      <a href="#factions">Фракции</a><a href="#classes">Классы</a><a href="#worlds">Миры</a><a href="#story">История</a>
+    </nav>
+    <div class="side" role="group" aria-label="Выбор стороны">
+      <button id="bRep" aria-pressed="true" type="button">Республика</button>
+      <button id="bEmp" aria-pressed="false" type="button">Империя</button>
+    </div>
+  </div>
+</header>
+
+<main id="top">
+  <div class="hero"><div class="wrap">
+    <h1>Тысячи лет до<span id="heroSide">Скайуокера</span></h1>
+    <p id="heroText">За 3600 лет до событий фильмов Республика и Империя ситхов снова делят галактику. Выберите сторону и узнайте, с чего начать путь в SWTOR.</p>
+    <a class="btn" href="#classes">Выбрать класс</a><a class="btn ghost" href="#story">История игры</a>
+  </div></div>
+
+  <section id="factions"><div class="wrap">
+    <h2>Две фракции, один конфликт</h2>
+    <p class="lead">В Star Wars: The Old Republic от BioWare вы играете за одну из двух сторон. Каждая ведёт собственную сюжетную линию на всём пути от первого уровня.</p>
+    <div class="grid2">
+      <div class="card"><h3>Галактическая Республика</h3><p>Демократия со столицей на Корусанте и Орденом джедаев как главной опорой. После Корусантского договора она держится на хрупком мире и ждёт новой войны.</p></div>
+      <div class="card"><h3>Империя ситхов</h3><p>Возрождённая империя тёмных лордов с центром на Дромунд Кааса. Здесь ценят силу и амбиции, а карьера строится на интригах и победах.</p></div>
+    </div>
+  </div></section>
+
+  <section id="classes"><div class="wrap">
+    <h2>Классы <span id="classSide">Республики</span></h2>
+    <p class="lead">У каждой стороны по четыре класса, а на старте игры выбирается один из двух продвинутых вариантов. Названия даны в русской адаптации и могут отличаться от официальной локализации.</p>
+    <div class="explorer">
+      <div class="tabs" id="tabs" role="tablist" aria-label="Классы"></div>
+      <div class="detail" id="detail" role="tabpanel" aria-live="polite"></div>
+    </div>
+  </div></section>
+
+  <section id="worlds"><div class="wrap">
+    <h2>Миры, с которых всё начинается</h2>
+    <p class="lead">Стартовые планеты задают тон всему сюжету, а дальше путь ведёт через всю галактику.</p>
+    <div class="planets" id="planets"></div>
+  </div></section>
+
+  <section id="story"><div class="wrap">
+    <h2>Как развивалась игра</h2>
+    <p class="lead">Игра вышла в декабре 2011 года, а с ноября 2012 года действует модель free-to-play с подпиской. Вот ключевые дополнения.</p>
+    <ol class="timeline">
+      <li><b>2011</b><span>Запуск: восемь классов и сюжетная озвучка, делающая каждого героя главным.</span></li>
+      <li><b>2013 и 2014</b><span>Rise of the Hutt Cartel и Shadow of Revan расширяют сюжет и вводят новые планеты.</span></li>
+      <li><b>2015 и 2016</b><span>Knights of the Fallen Empire и Knights of the Eternal Throne превращают игру в большую сюжетную сагу.</span></li>
+      <li><b>2019</b><span>Onslaught продолжает историю и приносит новые регионы.</span></li>
+      <li><b>2022</b><span>Legacy of the Sith запускает следующий сюжетный этап и обновляет системы развития героя.</span></li>
+    </ol>
+  </div></section>
+</main>
+
+<footer><div class="wrap">
+  Неофициальный фан-проект. Star Wars, The Old Republic и связанные названия принадлежат Lucasfilm, Electronic Arts и BioWare. Здесь нет официальных материалов и изображений. Проверяйте детали на официальном сайте игры.
+</div></footer>
+
+<script>
+(function(){
+  var DATA={
+    republic:{label:"Республики",hero:"Скайуокера",text:"За 3600 лет до событий фильмов Республика и Империя ситхов снова делят галактику. Выберите сторону и узнайте, с чего начать путь в SWTOR.",
+      classes:[
+        {n:"Джедай-рыцарь",adv:["Страж","Часовой"],role:"Ближний бой",d:"Воин Ордена, который идёт в самую гущу событий. Начинает путь на Тайтоне и выбирает между стойкостью Стража и подвижностью Часового."},
+        {n:"Джедай-консул",adv:["Мудрец","Тень"],role:"Сила и скрытность",d:"Дипломат и мыслитель Ордена. Мудрец лечит и управляет Силой на расстоянии, Тень сочетает скрытность с ближним боем."},
+        {n:"Солдат",adv:["Коммандос","Авангард"],role:"Тяжёлое вооружение",d:"Элитный боец армии Республики. Коммандос полагается на тяжёлое оружие, Авангард идёт в ближний бой в броне."},
+        {n:"Контрабандист",adv:["Стрелок","Проходимец"],role:"Обаяние и меткость",d:"Вольный пилот и авантюрист. Стрелок бьёт точно и быстро, Проходимец играет из укрытия и в тени."}
+      ]},
+    empire:{label:"Империи",hero:"Вейдера",text:"За 3600 лет до событий фильмов Империя ситхов вновь бросает вызов Республике. Выберите сторону и узнайте, с чего начать путь в SWTOR.",
+      classes:[
+        {n:"Воин ситхов",adv:["Джаггернаут","Мародёр"],role:"Ярость и сила",d:"Тёмный воин, сильный ненавистью и дисциплиной. Начинает на Коррибане и выбирает между стойкостью Джаггернаута и натиском Мародёра."},
+        {n:"Инквизитор ситхов",adv:["Колдун","Убийца"],role:"Тёмная магия",d:"Мастер тайных знаний ситхов. Колдун обрушивает молнии и лечит, Убийца сочетает скрытность с ближним боем."},
+        {n:"Охотник за головами",adv:["Наёмник","Пауэртех"],role:"Технологии и огонь",d:"Профессионал, который берёт заказы и выполняет их с помощью арсенала. Наёмник ставит на огневую мощь, Пауэртех на броню и инженерию."},
+        {n:"Имперский агент",adv:["Снайпер","Оперативник"],role:"Шпионаж и меткость",d:"Тайный оперативник разведки Империи. Снайпер бьёт издалека из укрытия, Оперативник работает вблизи и исподтишка."}
+      ]}
+  };
+  var PLANETS=[
+    ["Тайтон","Древний мир, где начинают путь джедаи Республики."],
+    ["Корусант","Столица Республики и центр политики, торговли и интриг."],
+    ["Коррибан","Мёртвая планета с гробницами тёмных лордов и школой ситхов."],
+    ["Дромунд Каас","Влажный мир джунглей, где расположена столица Империи."],
+    ["Татуин","Пустынная планета с контрабандистами и древними тайнами."],
+    ["Альдераан","Живописный мир Республики, затронутый большой политикой."]
+  ];
+  var root=document.documentElement,tabs=document.getElementById("tabs"),detail=document.getElementById("detail");
+  var side="republic",idx=0;
+  try{var s=localStorage.getItem("swtor-side");if(s==="republic"||s==="empire")side=s;else if(matchMedia("(prefers-color-scheme:dark)").matches)side="empire"}catch(e){if(matchMedia("(prefers-color-scheme:dark)").matches)side="empire"}
+
+  function esc(t){var d=document.createElement("div");d.textContent=t;return d.innerHTML}
+  function render(){
+    var S=DATA[side];
+    root.setAttribute("data-side",side);
+    document.getElementById("bRep").setAttribute("aria-pressed",side==="republic");
+    document.getElementById("bEmp").setAttribute("aria-pressed",side==="empire");
+    document.getElementById("heroSide").textContent=S.hero;
+    document.getElementById("heroText").textContent=S.text;
+    document.getElementById("classSide").textContent=S.label;
+    tabs.innerHTML=S.classes.map(function(c,i){
+      return '<button type="button" role="tab" data-i="'+i+'" aria-selected="'+(i===idx)+'">'+esc(c.n)+'</button>';
+    }).join("");
+    var c=S.classes[idx];
+    detail.innerHTML='<h3>'+esc(c.n)+'</h3><p>'+esc(c.d)+'</p><div class="chips">'+
+      c.adv.map(function(a){return '<span>'+esc(a)+'</span>'}).join("")+'</div><p><b>Стиль игры:</b> '+esc(c.role)+'.</p>';
+  }
+  function setSide(v){side=v;idx=0;try{localStorage.setItem("swtor-side",v)}catch(e){}render()}
+  document.getElementById("bRep").onclick=function(){setSide("republic")};
+  document.getElementById("bEmp").onclick=function(){setSide("empire")};
+  tabs.addEventListener("click",function(e){var b=e.target.closest("button");if(!b)return;idx=+b.dataset.i;render();var t=tabs.querySelector('[data-i="'+idx+'"]');if(t)t.focus()});
+  document.getElementById("planets").innerHTML=PLANETS.map(function(p){
+    return '<div class="card"><h3>'+esc(p[0])+'</h3><p>'+esc(p[1])+'</p></div>';
+  }).join("");
+  render();
+})();
+</script>
+</body>
+</html>
